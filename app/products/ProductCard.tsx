@@ -28,9 +28,8 @@ const ProductCard = ({
         <p className="mt-2 text-sm">{description}</p>
       </CardContent>
       <CardFooter className="flex justify-between gap-3">
-        <h4>${price}</h4>
+        <h4>${price.toString()}</h4>
         <Button>Buy Now</Button>
-        {/* <Button variant={"secondary"}>Add to card</Button> */}
       </CardFooter>
     </Card>
   );

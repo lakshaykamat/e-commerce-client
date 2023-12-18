@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "@/lib/sanity";
 import ProductCard, { ProductCardSkeleton } from "./ProductCard";
+import { productType } from "@/types";
 
 const ProductPage = () => {
     const productData = useQuery({
@@ -22,11 +23,12 @@ const ProductPage = () => {
         ) : (
           productData.isError ? <h1>Error :(</h1>
           :
-          productData.data.map((product:any) => {
+          //@ts-ignore
+          productData.data.map((product:productType,index) => {
             return (
               <ProductCard
               price={product.price}
-              key={product._id}
+              key={index}
                 title={product.name}
                 image={product.imageURL}
                 description={product.details}
