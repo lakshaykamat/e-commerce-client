@@ -37,7 +37,7 @@ const HomePage = () => {
   );
 };
 
-export const TodayDealCard = () => {
+const TodayDealCard = () => {
   return (
     <>
       <Card>
