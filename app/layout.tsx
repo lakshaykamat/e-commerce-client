@@ -13,16 +13,16 @@ export default function RootLayout({
   return (
     <QueryClientProvider client={queryClient}>
       <html lang="en">
-        <body>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar />
-            <main className="max-w-7xl mx-auto px-4 pb-10">{children}</main>
-          </ThemeProvider>
+        <body className="text-foreground bg-background">
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+              <main className="max-w-7xl mx-auto px-6 pb-10">{children}</main>
+            </ThemeProvider>
         </body>
       </html>
     </QueryClientProvider>

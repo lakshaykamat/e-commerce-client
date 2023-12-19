@@ -21,7 +21,7 @@ const ProductCard = ({
   return (
     <Card className="flex flex-col">
       <CardHeader>
-        <img className="rounded-lg h-40 w-full" src={image.toString()}></img>
+        <img className="rounded-lg w-full" src={image.toString()}></img>
       </CardHeader>
       <CardContent className="flex-1">
         <h3>{title}</h3>
