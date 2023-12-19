@@ -3,5 +3,6 @@ export type productType = {
     name:String,
     details:String,
     imageURL:String
-    price:number
+    price:number,
+    slug:String
 }

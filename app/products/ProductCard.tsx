@@ -6,17 +6,20 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
 
 const ProductCard = ({
   description,
   title,
   image,
-  price
+  price,
+  slug
 }: {
   title: String;
   description: String;
   image: String;
-  price:number
+  price:number;
+  slug:String
 }) => {
   return (
     <Card className="flex flex-col">
@@ -29,7 +32,9 @@ const ProductCard = ({
       </CardContent>
       <CardFooter className="flex justify-between gap-3">
         <h4>${price.toString()}</h4>
+        <Link href={`/products/${slug}`}>
         <Button>Buy Now</Button>
+        </Link>
       </CardFooter>
     </Card>
   );

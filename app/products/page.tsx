@@ -27,6 +27,7 @@ const ProductPage = () => {
           productData.data.map((product: productType, index) => {
             return (
               <ProductCard
+              slug={product.slug}
                 price={product.price}
                 key={index}
                 title={product.name}

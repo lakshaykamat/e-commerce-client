@@ -1,11 +1,14 @@
-"use client"
+"use client";
 import TodayDealCard from "@/components/ui/TodayDealCard";
 import { PRODUCTS, TodayDeals } from "@/data";
 import ProductCard from "./products/ProductCard";
-import { Fade  } from "react-slideshow-image";
-import { ArrowLeft } from 'lucide-react';
-import { ArrowRight } from 'lucide-react';
-import 'react-slideshow-image/dist/styles.css'
+import { Fade } from "react-slideshow-image";
+import { ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import "react-slideshow-image/dist/styles.css";
+import { useQuery } from "@tanstack/react-query";
+import { getProducts } from "@/lib/sanity";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const HomePage = () => {
   const HERO_IMAGES = [
@@ -20,9 +23,19 @@ const HomePage = () => {
     duration: 3000,
     transitionDuration: 300,
     infinte: true,
-    prevArrow: <ArrowLeft/>,
-    nextArrow: <ArrowRight/>,
+    prevArrow: <ArrowLeft />,
+    nextArrow: <ArrowRight />,
   };
+
+  const allproductQuery = useQuery({
+    queryKey: ["all_product"],
+    queryFn: getProducts,
+  });
+  if(allproductQuery.isLoading){
+    return <LoadingSkeleton/>
+  }
+
+  
   return (
     <div>
       <header className="mt-12">
@@ -56,17 +69,22 @@ const HomePage = () => {
           <div key={product.id} className="my-12">
             <h2>{product.title}</h2>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-">
-              {product.items.map((item) => {
-                return (
-                  <ProductCard
-                    key={item.id}
-                    title={item.title}
-                    description={item.description}
-                    price={item.price}
-                    image={item.image.url}
-                  />
-                );
-              })}
+              {allproductQuery.isLoading ? (
+                <h1>Loading...</h1>
+              ) : (
+                allproductQuery.data.map((item:any) => {
+                  return (
+                    <ProductCard
+                      slug={item.slug}
+                      key={item.id}
+                      title={item.name}
+                      description={item.description}
+                      price={item.price}
+                      image={item.image}
+                    />
+                  );
+                })
+              )}
             </div>
           </div>
         );
@@ -74,4 +92,27 @@ const HomePage = () => {
     </div>
   );
 };
+
+const LoadingSkeleton = ()=>{
+  return(
+    <div>
+    <Skeleton className="w-full h-72 mt-12" />
+    <div className="grid grid-cols-2 sm:grid-cols-3 place-items-center gap-6 mx-auto mt-12">
+      <Skeleton className="w-56 h-56" />
+      <Skeleton className="w-56 h-56" />
+      <Skeleton className="w-56 h-56" />
+    </div>
+    <div className="grid grid-cols-2 sm:grid-cols-3 place-items-center gap-6 mx-auto mt-24">
+      <Skeleton className="w-56 h-56" />
+      <Skeleton className="w-56 h-56" />
+      <Skeleton className="w-56 h-56" />
+    </div>
+    <div className="grid grid-cols-2 sm:grid-cols-3 place-items-center gap-6 mx-auto mt-24">
+      <Skeleton className="w-56 h-56" />
+      <Skeleton className="w-56 h-56" />
+      <Skeleton className="w-56 h-56" />
+    </div>
+  </div>
+  )
+}
 export default HomePage;
