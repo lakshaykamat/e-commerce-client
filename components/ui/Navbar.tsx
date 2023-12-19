@@ -30,12 +30,8 @@ const NAV_LINKS = [
     label: "Products",
   },
   {
-    path: "/help",
-    label: "Help",
-  },
-  {
     path: "/contact",
-    label: "Label",
+    label: "Contact",
   },
 ];
 const Navbar = () => {

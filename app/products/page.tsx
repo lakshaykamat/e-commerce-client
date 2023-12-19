@@ -1,18 +1,18 @@
-"use client"
+"use client";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "@/lib/sanity";
 import ProductCard, { ProductCardSkeleton } from "./ProductCard";
 import { productType } from "@/types";
 
 const ProductPage = () => {
-    const productData = useQuery({
-        queryKey: ["products"],
-        queryFn: getProducts,
-      });
+  const productData = useQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
+  });
   return (
     <div className="mt-12">
-        <h1>Products</h1>
-        <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <h1>Products</h1>
+      <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {productData.isLoading ? (
           <>
             <ProductCardSkeleton />
@@ -20,15 +20,15 @@ const ProductPage = () => {
             <ProductCardSkeleton />
             <ProductCardSkeleton />
           </>
+        ) : productData.isError ? (
+          <h1>Error :(</h1>
         ) : (
-          productData.isError ? <h1>Error :(</h1>
-          :
           //@ts-ignore
-          productData.data.map((product:productType,index) => {
+          productData.data.map((product: productType, index) => {
             return (
               <ProductCard
-              price={product.price}
-              key={index}
+                price={product.price}
+                key={index}
                 title={product.name}
                 image={product.imageURL}
                 description={product.details}
@@ -38,7 +38,7 @@ const ProductPage = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductPage
+export default ProductPage;

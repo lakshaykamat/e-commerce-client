@@ -13,6 +13,9 @@ export default function RootLayout({
   return (
     <QueryClientProvider client={queryClient}>
       <html lang="en">
+        <head>
+          <title>BoAt Headphone and Watches | Best in India</title>
+        </head>
         <body className="text-foreground bg-background">
             <ThemeProvider
               attribute="class"
