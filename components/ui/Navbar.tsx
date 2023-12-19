@@ -90,8 +90,10 @@ const MobileNavbar = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <div className="sm:hidden flex gap-3 items-center">
-          <Menu />
+      <div className="sm:hidden justify-center flex gap-3 items-center">
+          <Button variant={"outline"} size={"icon"}>
+            <Menu />
+          </Button>
         </div>
       </SheetTrigger>
       <SheetContent>

@@ -12,7 +12,6 @@ export async function createProduct(post: any) {
 }
 
 export async function getProducts() {
-  // const posts = await client.fetch('*[_type == "product"]');
   const products = await client.fetch(
     groq`*[_type == 'product'] | order(_createdAt desc){
     name,
@@ -25,7 +24,6 @@ export async function getProducts() {
     "about":description,
     }`
   );
-  console.log(products);
   return products;
 }
 
@@ -39,20 +37,6 @@ export async function getProduct(slug: String) {
     "description":details,
     "about":description,
   }`;
-  const product = await client.fetch(query, { slug });
-  // const product = client.fetch(
-  //   groq`*[_type == 'product' && slug.current == ${slug}][0]`
-  // );
-  console.log(product);
+  const product = await client.fetch(query, { slug });;
   return product;
 }
-
-// export async function createPost(post) {
-//   const result = client.create(post);
-//   return result;
-// }
-
-// export async function updateDocumentTitle(_id, title) {
-//   const result = client.patch(_id).set({ title });
-//   return result;
-// }

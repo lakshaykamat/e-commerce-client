@@ -23,11 +23,10 @@ const ProductPage = () => {
         ) : productData.isError ? (
           <h1>Error :(</h1>
         ) : (
-          //@ts-ignore
-          productData.data.map((product: productType, index) => {
+          productData.data.map((product: productType, index: number) => {
             return (
               <ProductCard
-              slug={product.slug}
+                slug={product.slug}
                 price={product.price}
                 key={index}
                 title={product.name}
