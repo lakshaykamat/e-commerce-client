@@ -31,8 +31,8 @@ const ProductPage = () => {
                 price={product.price}
                 key={index}
                 title={product.name}
-                image={product.imageURL}
-                description={product.details}
+                image={product.image}
+                description={product.description}
               />
             );
           })
