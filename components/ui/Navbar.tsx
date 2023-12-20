@@ -45,10 +45,10 @@ const Navbar = () => {
   return (
     <header className="flex justify-around py-4 border-b-2 border-gray-300 dark:border-gray-800">
       <h3>BoAt Ahead</h3>
-      <div className="flex sm:hidden gap-3 items-center justify-center">
-        <MobileNavbar />
-        <ModeToggle />
-      </div>
+      {/* <div className="flex sm:hidden gap-3 items-center justify-center"> */}
+      <MobileNavbar />
+      {/* <ModeToggle /> */}
+      {/* </div> */}
       <div className="hidden sm:flex items-center gap-3">
         {navItems}
         <ModeToggle />
@@ -88,23 +88,28 @@ const MobileNavbar = () => {
     );
   });
   return (
-    <Sheet>
-      <SheetTrigger>
-      <div className="sm:hidden justify-center flex gap-3 items-center">
-          <Button variant={"outline"} size={"icon"}>
-            <Menu />
-          </Button>
-        </div>
-      </SheetTrigger>
-      <SheetContent>
-        <SheetHeader>
-          <SheetTitle>BoAt Head</SheetTitle>
-          <SheetDescription className="grid grid-cols-1 gap-3 place-content-start place-items-start">
-            {navItems}
-          </SheetDescription>
-        </SheetHeader>
-      </SheetContent>
-    </Sheet>
+    <div className="flex sm:hidden gap-3 items-center justify-center">
+      <div className="justify-center sm:hidden flex gap-3 items-center">
+        {/* <Button variant={"outline"} size={"icon"}> */}
+          <Sheet>
+            <SheetTrigger>
+            {/* <Button variant={"outline"} size={"icon"}> */}
+              <Menu />
+            {/* </Button> */}
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Admin Panel</SheetTitle>
+                <SheetDescription className="grid grid-cols-1 gap-3 place-content-start place-items-start">
+                  {navItems}
+                </SheetDescription>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
+        {/* </Button> */}
+        <ModeToggle />
+      </div>
+    </div>
   );
 };
 export default Navbar;
